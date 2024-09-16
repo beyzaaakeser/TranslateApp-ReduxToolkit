@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LanguageSelect from './components/LanguageSelect';
 import TextContainer from './components/TextContainer';
 import { useDispatch } from 'react-redux';
 import { getLangs } from './redux/actions';
 
 const App = () => {
-  const dispatch = useDispatch()
+  const [sourceLang, setSourceLang] = useState({
+    label: 'Turkish',
+    value: 'tr',
+  });
+  const [targetLang, setTargetLang] = useState({
+    label: 'English',
+    value: 'en',
+  });
+  const [text, setText] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getLangs())
-  }, [])
-  
+    dispatch(getLangs());
+  }, []);
+
+  console.log(sourceLang, targetLang);
 
   return (
     <div className="bg-zinc-900 h-screen text-white grid place-items-center">
@@ -19,7 +29,10 @@ const App = () => {
           Translete +{' '}
         </h1>
 
-        <LanguageSelect />
+        <LanguageSelect
+          setSourceLang={setSourceLang}
+          setTargetLang={setTargetLang}
+        />
 
         <TextContainer />
 
