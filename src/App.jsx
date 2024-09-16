@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from './components/LanguageSelect';
 import LanguageSelect from './components/LanguageSelect';
+import TextContainer from './components/TextContainer';
 
 const App = () => {
   return (
@@ -10,9 +11,9 @@ const App = () => {
           Translete +{' '}
         </h1>
 
-      <LanguageSelect/>
+        <LanguageSelect />
 
-        
+        <TextContainer />
 
         <button
           className="bg-zinc-700 px-5 py-3 rounded-md 
