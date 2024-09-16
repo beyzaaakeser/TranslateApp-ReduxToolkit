@@ -1,4 +1,6 @@
 import React from 'react';
+import Select from './components/LanguageSelect';
+import LanguageSelect from './components/LanguageSelect';
 
 const App = () => {
   return (
@@ -8,7 +10,7 @@ const App = () => {
           Translete +{' '}
         </h1>
 
-      
+      <LanguageSelect/>
 
         <div className="flex gap-3 mt-5 md:gap-[105px] max-md:flex-col">
           <div className="flex-1">
