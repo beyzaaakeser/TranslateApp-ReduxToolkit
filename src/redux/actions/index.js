@@ -1,6 +1,10 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../../api/index';
 
-export const getLangs = createAsyncThunk("lang/getLangs",async () => {
+export const getLangs = createAsyncThunk('lang/getLangs', async () => {
+  // api isteği at
+  const res = await api.get('/getLanguages');
 
-    return "payload"
-})
+  // gelen cevabı payload olarak belirle
+  return res.data.data.languages;
+});
