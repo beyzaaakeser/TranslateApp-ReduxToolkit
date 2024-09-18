@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import LanguageSelect from './components/LanguageSelect';
 import TextContainer from './components/TextContainer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getLangs, translateText } from './redux/actions';
 
 const App = () => {
+  const { answer } = useSelector((store) => store.translate);
+  const dispatch = useDispatch();
   const [sourceLang, setSourceLang] = useState({
     label: 'Turkish',
     value: 'tr',
@@ -13,18 +15,25 @@ const App = () => {
     label: 'English',
     value: 'en',
   });
-  const [text, setText] = useState();
-  const dispatch = useDispatch();
+  const [text, setText] = useState("");
 
   useEffect(() => {
     dispatch(getLangs());
   }, []);
 
-  //console.log(sourceLang, targetLang,text);
+  useEffect(() => {
+    dispatch(translateText({ sourceLang, targetLang, text }));
+  }, [targetLang]);
 
   const handleTranslate = () => {
-    dispatch(translateText({sourceLang, targetLang, text}));
+    dispatch(translateText({ sourceLang, targetLang, text }));
   };
+  const handleSwap = () => {
+    setSourceLang(targetLang);
+    setTargetLang(sourceLang);
+    setText(answer);
+  };
+
 
   return (
     <div className="bg-zinc-900 h-screen text-white grid place-items-center">
@@ -38,6 +47,7 @@ const App = () => {
           sourceLang={sourceLang}
           setTargetLang={setTargetLang}
           targetLang={targetLang}
+          handleSwap={handleSwap}
         />
 
         <TextContainer setText={setText} text={text} />

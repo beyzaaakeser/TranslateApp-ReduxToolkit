@@ -18,8 +18,6 @@ export const translateText = createAsyncThunk(
     data.append('text', p.text);
 
     const res = await api.post('/translate', data);
-    console.log(res.data.data.translatedText);
-
     return res.data.data.translatedText;
   }
 );

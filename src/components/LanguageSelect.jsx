@@ -7,13 +7,14 @@ const LanguageSelect = ({
   setTargetLang,
   sourceLang,
   targetLang,
+  handleSwap,
 }) => {
   const { isLoading, error, langs } = useSelector((store) => store.lang);
 
   /*
    * Dil dizisinideki nesnelerin key değerlerini:
-   * code > value
-   * name > label'a çevirmeliyiz
+   * code -> value
+   * name -> label'a çevirmeliyiz
    * her render sırasında gereksiz hesaplamanın önüne geçmek için useMemo kullandık
    */
   const formatted = useMemo(
@@ -28,7 +29,7 @@ const LanguageSelect = ({
   return (
     <div className="flex gap-2 text-black">
       <ReactSelect
-      value={sourceLang}
+        value={sourceLang}
         onChange={(e) => setSourceLang(e)}
         isLoading={isLoading}
         isDisabled={isLoading}
@@ -36,12 +37,15 @@ const LanguageSelect = ({
         className="flex-1"
       />
 
-      <button className="bg-zinc-700 py-2 px-6 hover:bg-zinc-800 transition text-white rounded">
+      <button
+        onClick={handleSwap}
+        className="bg-zinc-700 py-2 px-6 hover:bg-zinc-800 transition text-white rounded"
+      >
         Change
       </button>
 
       <ReactSelect
-      value={targetLang}
+        value={targetLang}
         onChange={(e) => setTargetLang(e)}
         options={formatted}
         isLoading={isLoading}
