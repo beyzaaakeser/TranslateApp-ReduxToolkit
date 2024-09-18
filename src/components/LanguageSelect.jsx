@@ -2,7 +2,12 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import ReactSelect from 'react-select';
 
-const LanguageSelect = ({setSourceLang,setTargetLang}) => {
+const LanguageSelect = ({
+  setSourceLang,
+  setTargetLang,
+  sourceLang,
+  targetLang,
+}) => {
   const { isLoading, error, langs } = useSelector((store) => store.lang);
 
   /*
@@ -23,7 +28,8 @@ const LanguageSelect = ({setSourceLang,setTargetLang}) => {
   return (
     <div className="flex gap-2 text-black">
       <ReactSelect
-      onChange={(e) => setSourceLang(e)}
+      value={sourceLang}
+        onChange={(e) => setSourceLang(e)}
         isLoading={isLoading}
         isDisabled={isLoading}
         options={formatted}
@@ -35,7 +41,8 @@ const LanguageSelect = ({setSourceLang,setTargetLang}) => {
       </button>
 
       <ReactSelect
-       onChange={(e) => setTargetLang(e)}
+      value={targetLang}
+        onChange={(e) => setTargetLang(e)}
         options={formatted}
         isLoading={isLoading}
         isDisabled={isLoading}

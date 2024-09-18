@@ -20,7 +20,7 @@ const App = () => {
     dispatch(getLangs());
   }, []);
 
-  console.log(sourceLang, targetLang);
+  //console.log(sourceLang, targetLang,text);
 
   return (
     <div className="bg-zinc-900 h-screen text-white grid place-items-center">
@@ -31,10 +31,12 @@ const App = () => {
 
         <LanguageSelect
           setSourceLang={setSourceLang}
+          sourceLang={sourceLang}
           setTargetLang={setTargetLang}
+          targetLang={targetLang}
         />
 
-        <TextContainer />
+        <TextContainer setText={setText} text={text} />
 
         <button
           className="bg-zinc-700 px-5 py-3 rounded-md 
