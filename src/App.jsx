@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LanguageSelect from './components/LanguageSelect';
 import TextContainer from './components/TextContainer';
 import { useDispatch } from 'react-redux';
-import { getLangs } from './redux/actions';
+import { getLangs, translateText } from './redux/actions';
 
 const App = () => {
   const [sourceLang, setSourceLang] = useState({
@@ -22,6 +22,10 @@ const App = () => {
 
   //console.log(sourceLang, targetLang,text);
 
+  const handleTranslate = () => {
+    dispatch(translateText({sourceLang, targetLang, text}));
+  };
+
   return (
     <div className="bg-zinc-900 h-screen text-white grid place-items-center">
       <div className="w-[80vw] max-w-[1100px] flex flex-col justify-center">
@@ -39,6 +43,7 @@ const App = () => {
         <TextContainer setText={setText} text={text} />
 
         <button
+          onClick={handleTranslate}
           className="bg-zinc-700 px-5 py-3 rounded-md 
         font-semibold hover:ring-2 hover:bg-zinc-900 
         cursor-pointer transition mt-3 disabled:brightness-50"
