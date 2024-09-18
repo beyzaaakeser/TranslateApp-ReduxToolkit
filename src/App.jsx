@@ -3,18 +3,13 @@ import LanguageSelect from './components/LanguageSelect';
 import TextContainer from './components/TextContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLangs, translateText } from './redux/actions';
+import { en, tr } from './constants';
 
 const App = () => {
   const { answer } = useSelector((store) => store.translate);
   const dispatch = useDispatch();
-  const [sourceLang, setSourceLang] = useState({
-    label: 'Turkish',
-    value: 'tr',
-  });
-  const [targetLang, setTargetLang] = useState({
-    label: 'English',
-    value: 'en',
-  });
+  const [sourceLang, setSourceLang] = useState(tr);
+  const [targetLang, setTargetLang] = useState(en);
   const [text, setText] = useState("");
 
   useEffect(() => {
