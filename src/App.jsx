@@ -10,14 +10,16 @@ const App = () => {
   const dispatch = useDispatch();
   const [sourceLang, setSourceLang] = useState(tr);
   const [targetLang, setTargetLang] = useState(en);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   useEffect(() => {
     dispatch(getLangs());
   }, []);
 
   useEffect(() => {
-    dispatch(translateText({ sourceLang, targetLang, text }));
+    if (text) {
+      dispatch(translateText({ sourceLang, targetLang, text }));
+    }
   }, [targetLang]);
 
   const handleTranslate = () => {
@@ -28,7 +30,6 @@ const App = () => {
     setTargetLang(sourceLang);
     setText(answer);
   };
-
 
   return (
     <div className="bg-zinc-900 h-screen text-white grid place-items-center">
