@@ -5,7 +5,7 @@ import Loader from './Loader';
 const TextContainer = ({ text, setText }) => {
   const { isLoading, error, answer } = useSelector((store) => store.translate);
   return (
-    <div className="flex gap-3 mt-5 md:gap-[105px] max-md:flex-col">
+    <div className="flex gap-3 mt-5 md:gap-[60px] max-md:flex-col">
       <div className="flex-1">
         <textarea
           value={text}
